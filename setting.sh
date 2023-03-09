@@ -26,4 +26,24 @@ git config --global alias.ps push
 git config --global core.editor "vim"
 echo "Git has been configured with user name '$git_user_name', email '$git_email', and some aliases."
 
+# Check if the current operating system is macOS
+if [[ $(uname) == "Darwin" ]]; then
+    # Install Homebrew
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+    # Configure Homebrew environment variables
+    echo '# Set PATH, MANPATH, etc., for Homebrew.' >> ~/.profile
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.profile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    # Install required packages
+    brew install --cask visual-studio-code
+    brew install jadx
+    brew install go
+
+    export PATH=$PATH:/usr/local/go/bin:/usr/local/go/bin:$HOME/go/bin
+
+    # Add Homebrew environment variables to .profile
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.profile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi

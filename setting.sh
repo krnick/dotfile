@@ -28,6 +28,9 @@ echo "Git has been configured with user name '$git_user_name', email '$git_email
 
 # Check if the current operating system is macOS
 if [[ $(uname) == "Darwin" ]]; then
+    # Change default shell
+    chsh -s /bin/bash
+
     # Install Homebrew
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
